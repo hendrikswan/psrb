@@ -9,7 +9,7 @@ import { requestTopics } from './actions';
 import Navigation from '../../components/Navigation';
 
 
-console.log('navigation:', Navigation);
+// console.log('navigation:', Navigation);
 
 
 const mapStateToProps = selectNavigationContainer();
@@ -30,7 +30,10 @@ const mapStateToProps = selectNavigationContainer();
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    requestTopics: () => dispatch(requestTopics()),
+    requestTopics: () => {
+      console.log('DISPATCHING THE REQUEST_TOPICS ACTION!!!!!!!!!!!!!!!!');
+      dispatch(requestTopics());
+    },
   };
 }
 

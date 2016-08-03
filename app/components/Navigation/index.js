@@ -15,7 +15,7 @@ import styles from './styles.css';
 
 class Navigation extends React.Component {
   componentWillMount() {
-    // this.props.requestTopics();
+    this.props.requestTopics();
   }
 
   render() {

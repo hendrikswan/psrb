@@ -1,6 +1,7 @@
 import { put } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
-import { REQUEST_TOPICS, requestTopicsSucceeded, requestTopicsFailed } from './actions';
+import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
+import { REQUEST_TOPICS } from './constants';
 import fetch from 'isomorphic-fetch';
 
 export function fetchTopicsFromServer() {
