@@ -8,6 +8,7 @@ import {
   REQUEST_TOPICS,
   REQUEST_TOPICS_SUCCEEDED,
   REQUEST_TOPICS_FAILED,
+  TOPIC_SELECTED,
 } from './constants';
 
 export function requestTopics() {
@@ -24,9 +25,16 @@ export function requestTopicsSucceeded(topics) {
   };
 }
 
-export function requestTopicsFailed() {
+export function requestTopicsFailed(message) {
   return {
     type: REQUEST_TOPICS_FAILED,
     message,
+  };
+}
+
+export function selectTopic(topic) {
+  return {
+    type: TOPIC_SELECTED,
+    topic,
   };
 }

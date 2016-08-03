@@ -20,7 +20,11 @@ class Navigation extends React.Component {
 
   render() {
     const topicNodes = this.props.topics.map(t => (
-      <Topic {...t} key={t.description} />
+      <Topic
+        topic={t}
+        key={t.description}
+        selectTopic={this.props.selectTopic}
+      />
     ));
 
     return (
@@ -39,6 +43,8 @@ Navigation.propTypes = {
       description: React.PropTypes.string.isRequired,
     })
   ),
+  requestTopics: React.PropTypes.func.isRequired,
+  selectTopic: React.PropTypes.func.isRequired,
 };
 
 export default Navigation;

@@ -5,7 +5,7 @@
  */
 import { connect } from 'react-redux';
 import selectNavigationContainer from './selectors';
-import { requestTopics } from './actions';
+import { requestTopics, selectTopic } from './actions';
 import Navigation from '../../components/Navigation';
 
 
@@ -29,10 +29,12 @@ const mapStateToProps = selectNavigationContainer();
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
     requestTopics: () => {
-      console.log('DISPATCHING THE REQUEST_TOPICS ACTION!!!!!!!!!!!!!!!!');
       dispatch(requestTopics());
+    },
+    selectTopic: (topic) => {
+      console.log('selecting topic!!!!!!!!', topic);
+      dispatch(selectTopic(topic));
     },
   };
 }

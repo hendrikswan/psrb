@@ -5,23 +5,23 @@
 */
 
 import React from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
 import styles from './styles.css';
 
-function Topic({ description }) {
+function Topic({ topic, selectTopic }) {
   return (
     <div className={styles.topic}>
-      <FormattedMessage {...messages.header} />
-      description: {description}
+      <a href="#/selectTopic" onClick={() => selectTopic(topic)}>
+        {topic.description}
+      </a>
     </div>
   );
 }
 
 Topic.propTypes = {
-  description: React.PropTypes.string.isRequired,
+  topic: React.PropTypes.shape({
+    description: React.PropTypes.string.isRequired,
+  }),
+  selectTopic: React.PropTypes.func.isRequired,
 };
 
 export default Topic;
