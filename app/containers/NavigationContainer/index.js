@@ -3,26 +3,35 @@
  * NavigationContainer
  *
  */
-
-import React from 'react';
 import { connect } from 'react-redux';
 import selectNavigationContainer from './selectors';
+import { requestTopics } from './actions';
+import Navigation from '../../components/Navigation';
 
-export class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+
+console.log('navigation:', Navigation);
+
 
 const mapStateToProps = selectNavigationContainer();
+
+// const mapStateToProps = (state) => {
+//   console.log('in map state to props :', state);
+//   return {
+//     topics: () => [
+//       { description: 'test' },
+//       { description: 'test nr 2' },
+//     ],
+//   };
+// };
+// ({
+//   topics: state.navigationContainer.topics,
+// });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    requestTopics: () => dispatch(requestTopics()),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
