@@ -16,7 +16,6 @@ export function requestLinks() {
   };
 }
 
-
 export function requestLinksSucceeded(links) {
   return {
     type: REQUEST_LINKS_SUCCEEDED,
