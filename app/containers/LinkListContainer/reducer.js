@@ -6,6 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
+  REQUEST_LINKS,
   REQUEST_LINKS_SUCCEEDED,
 } from './constants';
 
@@ -15,6 +16,8 @@ const initialState = fromJS({
 
 function linkListContainerReducer(state = initialState, action) {
   switch (action.type) {
+    case REQUEST_LINKS:
+      return state;
     case REQUEST_LINKS_SUCCEEDED:
       return state.set('links', action.links).set('topicName', action.topicName);
     default:
