@@ -14,12 +14,6 @@ import { requestLinks } from './actions';
 const mapStateToProps = selectLinkListContainer();
 
 class LinkListContainer extends React.Component {
-  componentWillMount() {
-    if (!this.props.selectedTopic && this.props.routeParams && this.props.routeParams.topicName) {
-      this.props.requestLinks(this.props.routeParams.topicName); // todo: make this simpler
-    }
-  }
-
   componentWillReceiveProps(newProps) {
     if (newProps.routeParams && newProps.routeParams.topicName) { // selector for this
       if (this.props.topicName !== newProps.routeParams.topicName) {
