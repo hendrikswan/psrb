@@ -9,10 +9,12 @@ import {
   REQUEST_TOPICS,
   REQUEST_TOPICS_SUCCEEDED,
   TOPIC_SELECTED,
+  TOGGLE_DRAWER,
 } from './constants';
 
 const initialState = fromJS({
   topics: [],
+  isDrawerOpen: false,
 });
 
 function navigationContainerReducer(state = initialState, action) {
@@ -23,6 +25,8 @@ function navigationContainerReducer(state = initialState, action) {
       return state.set('topics', action.topics);
     case TOPIC_SELECTED:
       return state.set('selectedTopic', action.topic);
+    case TOGGLE_DRAWER:
+      return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     default:
       return state;
   }

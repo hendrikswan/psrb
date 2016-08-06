@@ -5,7 +5,7 @@
  */
 import { connect } from 'react-redux';
 import selectNavigationContainer from './selectors';
-import { requestTopics, selectTopic } from './actions';
+import { requestTopics, selectTopic, toggleDrawer } from './actions';
 import Navigation from '../../components/Navigation';
 import { push } from 'react-router-redux';
 
@@ -20,7 +20,9 @@ function mapDispatchToProps(dispatch) {
     selectTopic: (topic) => {
       dispatch(push(`/topics/${topic.name}`));
       dispatch(selectTopic(topic));
+      dispatch(toggleDrawer());
     },
+    toggleDrawer: () => dispatch(toggleDrawer()),
   };
 }
 

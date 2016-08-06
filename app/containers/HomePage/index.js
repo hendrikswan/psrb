@@ -10,8 +10,6 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import NavigationContainer from '../../containers/NavigationContainer';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -20,11 +18,10 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     console.log('home page props', this.props);
 
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
+      <div>
         <NavigationContainer />
         {this.props.children}
-      </h1>
+      </div>
     );
   }
 }

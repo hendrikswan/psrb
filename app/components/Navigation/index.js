@@ -5,12 +5,11 @@
 */
 
 import React from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import Topic from '../Topic';
-
-
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import List from 'material-ui/List/List';
 import styles from './styles.css';
 
 class Navigation extends React.Component {
@@ -18,19 +17,47 @@ class Navigation extends React.Component {
     this.props.requestTopics();
   }
 
+  toggle = () => {
+    console.log('toggling drawer!');
+    this.props.toggleDrawer();
+  }
+
   render() {
-    const topicNodes = this.props.topics.map(t => (
-      <Topic
-        topic={t}
-        key={t.description}
-        selectTopic={this.props.selectTopic}
-      />
+    const topicNodes = this.props.topics.map(topic => (
+      <MenuItem
+        key={topic.id}
+        onTouchTap={() => {
+          this.props.selectTopic(topic);
+        }}
+      >
+          {topic.name}
+      </MenuItem>
     ));
 
     return (
-      <div className={styles.navigation}>
-        <FormattedMessage {...messages.header} />
-        {topicNodes}
+      <div>
+        <AppBar
+          title="Coder daily"
+          onTitleTouchTap={this.props.toggleDrawer}
+          onLeftIconButtonTouchTap={this.toggle}
+          iconElementRight={(
+            <div
+              style={{
+                marginTop: 5,
+              }}
+            >
+              login
+            </div>
+          )}
+        />
+
+        <Drawer
+          open={this.props.isDrawerOpen}
+          docked={false}
+          // onRequestChange={open => this.setState({ open })}
+        >
+            {topicNodes}
+        </Drawer>
       </div>
     );
   }
@@ -45,6 +72,8 @@ Navigation.propTypes = {
   ),
   requestTopics: React.PropTypes.func.isRequired,
   selectTopic: React.PropTypes.func.isRequired,
+  isDrawerOpen: React.PropTypes.bool.isRequired,
+  toggleDrawer: React.PropTypes.func.isRequired,
 };
 
 export default Navigation;
