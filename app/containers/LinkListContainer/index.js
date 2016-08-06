@@ -21,7 +21,6 @@ class LinkListContainer extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('navigation', newProps);
     if (newProps.routeParams && newProps.routeParams.topicName) { // selector for this
       if (this.props.topicName !== newProps.routeParams.topicName) {
         // if (this.props.selectedTopic)
@@ -30,6 +29,14 @@ class LinkListContainer extends React.Component {
       }
     }
   }
+
+  // componentWillReceiveProps(newProps) {
+  //   if (newProps.routeTopicName && this.props.topicName !== newProps.routeTopicName) {
+  //     // if (this.props.selectedTopic)
+  //     //   console.log(this.props.selectedTopic.name, newProps.routeParams.topicName);
+  //     this.props.requestLinks(newProps.routeTopicName); // todo: make this simpler
+  //   }
+  // }
 
   render() {
     return (
