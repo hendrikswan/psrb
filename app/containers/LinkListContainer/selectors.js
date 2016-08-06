@@ -1,14 +1,9 @@
 import { createSelector } from 'reselect';
-
-/**
- * Direct selector to the linkListContainer state domain
- */
+// need to get the selected topic here
 const selectLinkListContainerDomain = () => state => state.get('linkListContainer');
-
 /**
  * Other specific selectors
  */
-
 
 /**
  * Default selector used by LinkListContainer

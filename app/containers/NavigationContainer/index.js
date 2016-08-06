@@ -7,25 +7,10 @@ import { connect } from 'react-redux';
 import selectNavigationContainer from './selectors';
 import { requestTopics, selectTopic } from './actions';
 import Navigation from '../../components/Navigation';
-
-
-// console.log('navigation:', Navigation);
+import { push } from 'react-router-redux';
 
 
 const mapStateToProps = selectNavigationContainer();
-
-// const mapStateToProps = (state) => {
-//   console.log('in map state to props :', state);
-//   return {
-//     topics: () => [
-//       { description: 'test' },
-//       { description: 'test nr 2' },
-//     ],
-//   };
-// };
-// ({
-//   topics: state.navigationContainer.topics,
-// });
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -33,7 +18,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(requestTopics());
     },
     selectTopic: (topic) => {
-      console.log('selecting topic!!!!!!!!', topic);
+      dispatch(push(`/topics/${topic.name}`));
       dispatch(selectTopic(topic));
     },
   };

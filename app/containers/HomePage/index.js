@@ -13,16 +13,17 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import NavigationContainer from '../../containers/NavigationContainer';
-import LinkListContainer from '../../containers/LinkListContainer';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+    console.log('home page props', this.props);
+
     return (
       <h1>
         <FormattedMessage {...messages.header} />
         <NavigationContainer />
-        <LinkListContainer />
+        {this.props.children}
       </h1>
     );
   }

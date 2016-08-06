@@ -10,17 +10,19 @@ import {
   REQUEST_LINKS_FAILED,
 } from './constants';
 
-export function requestLinks() {
+export function requestLinks(topicName) {
   return {
     type: REQUEST_LINKS,
+    topicName,
   };
 }
 
 
-export function requestLinksSucceeded(links) {
+export function requestLinksSucceeded({ links, topicName }) {
   return {
     type: REQUEST_LINKS_SUCCEEDED,
     links,
+    topicName,
   };
 }
 

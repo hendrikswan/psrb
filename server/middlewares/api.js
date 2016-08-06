@@ -11,19 +11,16 @@ function setupDb() {
   const topic1 = {
     name: 'libraries',
     description: 'links to useful open source libraries',
-    id: uuid(),
   };
 
   const topic2 = {
     name: 'apps',
     description: 'links to new and exciting apps',
-    id: uuid(),
   };
 
   const topic3 = {
     name: 'news',
     description: 'links to programming related news articles',
-    id: uuid(),
   };
 
 
@@ -34,7 +31,7 @@ function setupDb() {
   db.get('links').push({
     description: 'The very library we are working with now',
     url: 'https://github.com/facebook/react',
-    topicId: topic1.id,
+    topicName: topic1.name,
     id: uuid(),
     voteCount: 0,
     voters: [],
@@ -42,7 +39,7 @@ function setupDb() {
   db.get('links').push({
     description: 'An app to manage your finances',
     url: 'https://22seven.com',
-    topicId: topic2.id,
+    topicName: topic2.name,
     id: uuid(),
     voteCount: 0,
     voters: [],
@@ -50,7 +47,7 @@ function setupDb() {
   db.get('links').push({
     description: 'Go find some news yourself!',
     url: 'https://google.com',
-    topicId: topic3.id,
+    topicName: topic3.name,
     id: uuid(),
     voteCount: 0,
     voters: [],
@@ -80,13 +77,13 @@ module.exports = (app) => {
     res.send(db.get('topics').toArray().value());
   });
 
-  app.get('/api/topics/:id/links', (req, res) => {
+  app.get('/api/topics/:name/links', (req, res) => {
     res.send(db.get('links').filter((l) =>
-      l.topicId === req.params.id
+      l.topicName === req.params.name
     ).value());
   });
 
-  app.post('/api/topics/:id/links', (req, res) => {
+  app.post('/api/topics/:name/links', (req, res) => {
     const existingLink = db.get('links').find({ url: req.body.url });
 
     if (existingLink) {

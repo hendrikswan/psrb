@@ -10,7 +10,13 @@ import styles from './styles.css';
 function Topic({ topic, selectTopic }) {
   return (
     <div className={styles.topic}>
-      <a href="#/selectTopic" onClick={() => selectTopic(topic)}>
+      <a
+        href={`/topics/${topic.name}`}
+        onClick={(e) => {
+          selectTopic(topic);
+          e.preventDefault();
+        }}
+      >
         {topic.description}
       </a>
     </div>
