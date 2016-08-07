@@ -14,7 +14,12 @@ export function injectAsyncReducer(store) {
  * Inject an asynchronously loaded saga
  */
 export function injectAsyncSagas(store) {
-  return (sagas) => sagas.map(store.runSaga);
+  return (name, sagas) => {
+    if (!store.asyncSagas[name]) {
+      store.asyncSagas[name] = sagas; // eslint-disable-line
+      sagas.forEach(store.runSaga);
+    }
+  };
 }
 
 /**

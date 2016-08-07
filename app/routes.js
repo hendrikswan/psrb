@@ -36,7 +36,7 @@ export default function createRoutes(store) {
           navigationSagas,
         ]) => {
           injectReducer('navigationContainer', navigationReducer.default);
-          injectSagas(navigationSagas.default);
+          injectSagas('home', navigationSagas.default);
           renderRoute(component);
         });
 
@@ -61,8 +61,7 @@ export default function createRoutes(store) {
               linkListSagas,
             ]) => {
               injectReducer('linkListContainer', linkListReducer.default);
-              injectSagas(linkListSagas.default);
-              console.log('RENDERING link list !!!!!');
+              injectSagas('linkList', linkListSagas.default);
               renderRoute(component);
             });
 
