@@ -14,6 +14,20 @@ import { requestLinks, voteLink } from './actions';
 const mapStateToProps = selectLinkListContainer();
 
 class LinkListContainer extends React.Component {
+  static propTypes = {
+    routeParams: React.PropTypes.shape({
+      topicName: React.PropTypes.string.isRequired,
+    }),
+    requestLinks: React.PropTypes.func.isRequired,
+    topicName: React.PropTypes.string,
+  }
+
+  componentWillMount() {
+    if (this.props.routeParams && this.props.routeParams.topicName) {
+      this.props.requestLinks(this.props.routeParams.topicName);
+    }
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.routeParams && newProps.routeParams.topicName) { // selector for this
       if (this.props.topicName !== newProps.routeParams.topicName) {
