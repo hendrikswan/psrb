@@ -10,88 +10,62 @@ import ListItem from 'material-ui/List/ListItem';
 import Card from 'material-ui/Card/Card';
 import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+import VotingButton from '../VotingButton';
 
-
-class Link extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  getUpButton({ link, onVoteUp }) {
-    const upLink = (
-      <a
-        href="#Up"
-        onClick={
-                (e) => {
-                  onVoteUp(link);
-                  e.preventDefault();
-                }
-              }
-      >
-        Up
-      </a>
-    );
-    return upLink;
-  }
-
-  getDownButton({ link, onVoteDown }) {
-    const downLink = (
-      <a
-        href="#Down"
-        onClick={
-              (e) => {
-                onVoteDown(link);
-                e.preventDefault();
-              }
-            }
-      >
-        Down
-      </a>
-  );
-
-    return downLink;
-  }
-
-
-  render() {
-    const link = this.props.link;
-    return (
-      <Card
+const Link = ({ link }) => (
+  <Card
+    key={link.id}
+    style={{
+      marginBottom: 10,
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        marginTop: 15,
+      }}
+    >
+      <div
+        className={styles.link}
         key={link.id}
         style={{
-          marginBottom: 10,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
+        <VotingButton
+          icon={<UpArrow />}
+          onVote={() => this.props.onVoteUp(link)}
+        />
         <div
           style={{
-            display: 'flex',
-            marginTop: 15,
+            fontSize: 20,
+            textAlign: 'center',
           }}
         >
-          <div
-            className={styles.link}
-            key={link.id}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            {this.getUpButton({ link, onVoteUp: this.props.onVoteUp })}
-            <div
-              style={{
-                fontSize: 20,
-                textAlign: 'center',
-              }}
-            >
-              {link.voteCount}
-            </div>
-            {this.getDownButton({ link, onVoteDown: this.props.onVoteDown })}
-          </div>
-          <ListItem
-            primaryText={link.url}
-            secondaryText={link.description}
-          />
+          {link.voteCount}
         </div>
-      </Card>
-    );
-  }
-}
+        <VotingButton
+          icon={<DownArrow />}
+          onVote={() => this.props.onVoteDown(link)}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <ListItem
+          primaryText={link.url}
+          secondaryText={link.description}
+        />
+      </div>
+    </div>
+  </Card>
+);
+
 
 Link.propTypes = {
   link: React.PropTypes.shape({
