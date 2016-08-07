@@ -12,7 +12,7 @@ import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import VotingButton from '../VotingButton';
 
-const Link = ({ link }) => (
+const Link = ({ link, onVoteUp, onVoteDown }) => (
   <Card
     key={link.id}
     style={{
@@ -35,7 +35,7 @@ const Link = ({ link }) => (
       >
         <VotingButton
           icon={<UpArrow />}
-          onVote={() => this.props.onVoteUp(link)}
+          onVote={() => onVoteUp(link)}
         />
         <div
           style={{
@@ -47,7 +47,7 @@ const Link = ({ link }) => (
         </div>
         <VotingButton
           icon={<DownArrow />}
-          onVote={() => this.props.onVoteDown(link)}
+          onVote={() => onVoteDown(link)}
         />
       </div>
       <div
