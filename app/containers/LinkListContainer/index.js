@@ -38,14 +38,6 @@ class LinkListContainer extends React.Component {
     }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   if (newProps.routeTopicName && this.props.topicName !== newProps.routeTopicName) {
-  //     // if (this.props.selectedTopic)
-  //     //   console.log(this.props.selectedTopic.name, newProps.routeParams.topicName);
-  //     this.props.requestLinks(newProps.routeTopicName); // todo: make this simpler
-  //   }
-  // }
-
   render() {
     return (
       <LinkList

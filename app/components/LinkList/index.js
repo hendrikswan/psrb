@@ -4,26 +4,32 @@
 *
 */
 import React from 'react';
-import styles from './styles.css';
 import Link from './../Link';
 
-class LinkList extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    const linkNodes = this.props.links.map(link => (
-      <Link
-        key={link.id}
-        link={link}
-        onVoteDown={this.props.onVoteDown}
-        onVoteUp={this.props.onVoteUp}
-      />
-    ));
-    return (
-      <div className={styles.linkList}>
-        {linkNodes}
-      </div>
-    );
-  }
-}
+const LinkList = ({ links, onVoteDown, onVoteUp, topicName }) => {
+  const linkNodes = links.map(link => (
+    <Link
+      key={link.id}
+      link={link}
+      onVoteDown={onVoteDown}
+      onVoteUp={onVoteUp}
+    />
+  ));
+  return (
+    <div>
+      <h1
+        style={{
+          color: '#222',
+          fontWeight: '100',
+          fontFamily: 'Roboto',
+        }}
+      >
+        {topicName}
+      </h1>
+      {linkNodes}
+    </div>
+  );
+};
 
 LinkList.propTypes = {
   links: React.PropTypes.arrayOf(
@@ -34,6 +40,7 @@ LinkList.propTypes = {
     })).isRequired,
   onVoteUp: React.PropTypes.func.isRequired,
   onVoteDown: React.PropTypes.func.isRequired,
+  topicName: React.PropTypes.string,
 };
 
 export default LinkList;
