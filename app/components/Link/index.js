@@ -6,9 +6,14 @@
 
 import React from 'react';
 import styles from './styles.css';
+import ListItem from 'material-ui/List/ListItem';
+import Card from 'material-ui/Card/Card';
+import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
+import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+
 
 class Link extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  getUpButon({ link, onVoteUp }) {
+  getUpButton({ link, onVoteUp }) {
     const upLink = (
       <a
         href="#Up"
@@ -47,17 +52,43 @@ class Link extends React.Component { // eslint-disable-line react/prefer-statele
   render() {
     const link = this.props.link;
     return (
-      <div
-        className={styles.link}
+      <Card
         key={link.id}
+        style={{
+          marginBottom: 10,
+        }}
       >
-        <div>
-          {link.id} -
-          {link.url} - {link.description} - {link.voteCount} -
-          {this.getUpButon({ link, onVoteUp: this.props.onVoteUp })} - {this.getDownButton({ link, onVoteDown: this.props.onVoteDown })}
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 15,
+          }}
+        >
+          <div
+            className={styles.link}
+            key={link.id}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            {this.getUpButton({ link, onVoteUp: this.props.onVoteUp })}
+            <div
+              style={{
+                fontSize: 20,
+                textAlign: 'center',
+              }}
+            >
+              {link.voteCount}
+            </div>
+            {this.getDownButton({ link, onVoteDown: this.props.onVoteDown })}
+          </div>
+          <ListItem
+            primaryText={link.url}
+            secondaryText={link.description}
+          />
         </div>
-      </div>
-
+      </Card>
     );
   }
 }

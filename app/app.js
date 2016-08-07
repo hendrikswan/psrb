@@ -22,7 +22,6 @@ import useScroll from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -33,7 +32,7 @@ injectTapEventPlugin();
 import { translationMessages } from './i18n';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/sanitize.css';
+// import 'sanitize.css/sanitize.css';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -61,7 +60,7 @@ const rootRoute = {
 
 const render = (translatedMessages) => {
   ReactDOM.render(
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <MuiThemeProvider>
       <Provider store={store}>
         <LanguageProvider messages={translatedMessages}>
           <Router

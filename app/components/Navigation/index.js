@@ -25,7 +25,7 @@ class Navigation extends React.Component {
   render() {
     const topicNodes = this.props.topics.map(topic => (
       <MenuItem
-        key={topic.id}
+        key={topic.name}
         onTouchTap={() => {
           this.props.selectTopic(topic);
         }}
@@ -56,7 +56,9 @@ class Navigation extends React.Component {
           docked={false}
           // onRequestChange={open => this.setState({ open })}
         >
+          <List>
             {topicNodes}
+          </List>
         </Drawer>
       </div>
     );
