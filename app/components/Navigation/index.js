@@ -54,7 +54,7 @@ class Navigation extends React.Component {
         <Drawer
           open={this.props.isDrawerOpen}
           docked={false}
-          // onRequestChange={open => this.setState({ open })}
+          onRequestChange={this.props.toggleDrawer}
         >
           <List>
             {topicNodes}
