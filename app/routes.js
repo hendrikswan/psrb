@@ -17,6 +17,33 @@ export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
+  // function getComponentFactory({ name, containerComponentName, reducerPath, sagasPath }) {
+  //   const checkedReducerPath = reducerPath || `${containerComponentName}/reducer`;
+  //   const checkedSagasPath = reducerPath || `${containerComponentName}/sagasPath`;
+  //
+  //   return function getComponent(nextState, cb) {
+  //     const importModules = Promise.all([
+  //       System.import(containerComponentName),
+  //       System.import(checkedReducerPath),
+  //       System.import(checkedSagasPath),
+  //     ]);
+  //
+  //     const renderRoute = loadModule(cb);
+  //
+  //     importModules.then(([
+  //       component,
+  //       reducer,
+  //       sagas,
+  //     ]) => {
+  //       injectReducer('navigationContainer', reducer.default);
+  //       injectSagas(name, sagas.default);
+  //       renderRoute(component);
+  //     });
+  //
+  //     importModules.catch(errorLoading);
+  //   };
+  // }
+
   return [
     {
       path: '/',
@@ -62,6 +89,31 @@ export default function createRoutes(store) {
             ]) => {
               injectReducer('linkListContainer', linkListReducer.default);
               injectSagas('linkList', linkListSagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
+        {
+          path: '/login',
+          name: 'login',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/LoginContainer'),
+              System.import('containers/LoginContainer/reducer'),
+              System.import('containers/LoginContainer/sagas'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([
+              component,
+              reducer,
+              sagas,
+            ]) => {
+              injectReducer('loginContainer', reducer.default);
+              injectSagas('login', sagas.default);
               renderRoute(component);
             });
 

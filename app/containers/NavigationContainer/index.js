@@ -22,6 +22,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(selectTopic(topic));
       dispatch(toggleDrawer());
     },
+    startLogin: () => {
+      dispatch(push('/login'));
+    },
     toggleDrawer: () => dispatch(toggleDrawer()),
   };
 }

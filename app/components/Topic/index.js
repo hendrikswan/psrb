@@ -11,7 +11,6 @@ function Topic({ topic, selectTopic }) {
   return (
     <div className={styles.topic}>
       <a
-        href={`/topics/${topic.name}`}
         onClick={(e) => {
           selectTopic(topic);
           e.preventDefault();

@@ -11,6 +11,7 @@
 
 import React from 'react';
 import NavigationContainer from '../../containers/NavigationContainer';
+import LoginContainer from '../../containers/LoginContainer';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
