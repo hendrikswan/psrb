@@ -5,66 +5,18 @@
 */
 
 import React from 'react';
-import Topic from '../Topic';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import List from 'material-ui/List/List';
-import styles from './styles.css';
-import FlatButton from 'material-ui/FlatButton';
-import gravatar from 'gravatar';
-import Avatar from 'material-ui/Avatar';
+import LoginLink from '../LoginLink';
 
 class Navigation extends React.Component {
   componentWillMount() {
     this.props.requestTopics();
   }
 
-  toggle = () => {
-    console.log('toggling drawer!');
-    this.props.toggleDrawer();
-  }
-
   render() {
-    let loginComponent = (
-      <div
-        style={{
-          marginTop: 5,
-        }}
-      >
-        <FlatButton
-          label="Log in"
-          onMouseUp={this.props.startLogin}
-          style={{
-            color: '#fff',
-          }}
-        />
-      </div>
-    );
-
-    if (this.props.email) {
-      loginComponent = (
-        <div
-          style={{
-            color: '#fff',
-            marginRight: 15,
-            marginTop: 7,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar
-            src={gravatar.url(this.props.email)}
-            size={30}
-            style={{
-              marginRight: 5,
-            }}
-          />
-          {this.props.email}
-        </div>
-      );
-    }
-
     const topicNodes = this.props.topics.map(topic => (
       <MenuItem
         key={topic.name}
@@ -81,8 +33,8 @@ class Navigation extends React.Component {
         <AppBar
           title="Coder daily"
           onTitleTouchTap={this.props.toggleDrawer}
-          onLeftIconButtonTouchTap={this.toggle}
-          iconElementRight={loginComponent}
+          onLeftIconButtonTouchTap={this.props.toggleDrawer}
+          iconElementRight={<LoginLink email={this.props.email} startLogin={this.props.startLogin} />}
         />
 
         <Drawer
