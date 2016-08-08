@@ -24,7 +24,7 @@ function navigationContainerReducer(state = initialState, action) {
     case REQUEST_TOPICS_SUCCEEDED:
       return state.set('topics', action.topics);
     case TOPIC_SELECTED:
-      return state.set('selectedTopic', action.topic);
+      return state.set('selectedTopicName', action.topicName);
     case TOGGLE_DRAWER:
       return state.set('isDrawerOpen', !state.get('isDrawerOpen'));
     default:

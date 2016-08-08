@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
     },
     selectTopic: (topic) => {
       dispatch(push(`/topics/${topic.name}`));
-      dispatch(selectTopic(topic));
+      dispatch(selectTopic(topic.name));
       dispatch(toggleDrawer());
     },
     startLogin: () => {

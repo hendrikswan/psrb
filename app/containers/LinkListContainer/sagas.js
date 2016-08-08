@@ -1,7 +1,8 @@
 import { put } from 'redux-saga/effects';
-import { takeLatest, takeEvery } from 'redux-saga';
+import { takeLatest } from 'redux-saga';
 import { REQUEST_LINKS, VOTE_LINK } from './constants';
 import { requestLinksSucceeded, requestLinksFailed, requestVoteLinkSucceeded, requestVoteLinkFailed } from './actions';
+import { selectTopic } from '../NavigationContainer/actions';
 
 export function fetchLinksFromServer(topicName) {
   return fetch(`http://localhost:3000/api/topics/${topicName}/links`)
@@ -10,6 +11,7 @@ export function fetchLinksFromServer(topicName) {
 
 function* fetchLinks(action) {
   try {
+    yield put(selectTopic(action.topicName));
     const links = yield fetchLinksFromServer(action.topicName);
     yield put(requestLinksSucceeded({
       links,

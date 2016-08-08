@@ -33,10 +33,10 @@ export function requestTopicsFailed(message) {
   };
 }
 
-export function selectTopic(topic) {
+export function selectTopic(topicName) {
   return {
     type: TOPIC_SELECTED,
-    topic,
+    topicName,
   };
 }
 
