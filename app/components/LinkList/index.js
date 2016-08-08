@@ -21,7 +21,6 @@ const LinkList = ({ links, onVoteDown, onVoteUp, topicName }) => {
         style={{
           color: '#222',
           fontWeight: '100',
-          fontFamily: 'Roboto',
         }}
       >
         {topicName}
