@@ -169,7 +169,7 @@
     "compression": "1.6.2",
     "express": "4.14.0",
     "fontfaceobserver": "2.0.1",
-    "gravatar": "1.5.2",
+    "gravatar-url": "1.1.0",
     "history": "3.0.0",
     "immutable": "3.8.1",
     "intl": "1.2.4",

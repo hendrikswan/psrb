@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import gravatar from 'gravatar';
+import gravatarUrl from 'gravatar-url';
 import Avatar from 'material-ui/Avatar';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -22,7 +22,7 @@ function LoginLink({ startLogin, email }) {
         }}
       >
         <Avatar
-          src={gravatar.url(email)}
+          src={gravatarUrl(email, { size: 60 })}
           size={30}
           style={{
             marginRight: 5,
