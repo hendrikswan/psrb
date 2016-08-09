@@ -36,6 +36,7 @@ const Link = ({ link, onVoteUp, onVoteDown }) => (
         <VotingButton
           icon={<UpArrow />}
           onVote={() => onVoteUp(link)}
+          link={link}
         />
         <div
           style={{
@@ -48,6 +49,7 @@ const Link = ({ link, onVoteUp, onVoteDown }) => (
         <VotingButton
           icon={<DownArrow />}
           onVote={() => onVoteDown(link)}
+          link={link}
         />
       </div>
       <div

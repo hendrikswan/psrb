@@ -5,14 +5,28 @@
 */
 
 import React from 'react';
+import { grey400 } from 'material-ui/styles/colors';
 
-function VotingButton({ onVote, icon }) {
-  const styledIcon = React.cloneElement(icon, {
+function VotingButton({ link, onVote, icon }) {
+  let styledIcon = React.cloneElement(icon, {
     style: {
       width: 50,
       height: 50,
     },
   });
+
+  if (!link.votingEnabled) {
+    styledIcon = React.cloneElement(styledIcon, {
+      color: grey400,
+    });
+  }
+
+  let onClick = link.votingEnabled
+  ? (e) => {
+    onVote();
+    e.preventDefault();
+  }
+  : () => {};
 
 
   const voteLink = (
@@ -20,12 +34,7 @@ function VotingButton({ onVote, icon }) {
       style={{
         cursor: 'pointer',
       }}
-      onClick={
-        (e) => {
-          onVote();
-          e.preventDefault();
-        }
-      }
+      onClick={onClick}
     >
       {styledIcon}
     </a>
