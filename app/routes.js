@@ -16,34 +16,6 @@ const loadModule = (cb) => (componentModule) => {
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
-
-  // function getComponentFactory({ name, containerComponentName, reducerPath, sagasPath }) {
-  //   const checkedReducerPath = reducerPath || `${containerComponentName}/reducer`;
-  //   const checkedSagasPath = reducerPath || `${containerComponentName}/sagasPath`;
-  //
-  //   return function getComponent(nextState, cb) {
-  //     const importModules = Promise.all([
-  //       System.import(containerComponentName),
-  //       System.import(checkedReducerPath),
-  //       System.import(checkedSagasPath),
-  //     ]);
-  //
-  //     const renderRoute = loadModule(cb);
-  //
-  //     importModules.then(([
-  //       component,
-  //       reducer,
-  //       sagas,
-  //     ]) => {
-  //       injectReducer('navigationContainer', reducer.default);
-  //       injectSagas(name, sagas.default);
-  //       renderRoute(component);
-  //     });
-  //
-  //     importModules.catch(errorLoading);
-  //   };
-  // }
-
   return [
     {
       path: '/',
@@ -114,6 +86,31 @@ export default function createRoutes(store) {
             ]) => {
               injectReducer('loginContainer', reducer.default);
               injectSagas('login', sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        },
+        {
+          path: '/topics/:topicName/add',
+          name: 'topicAdd',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              System.import('containers/FormContainer'),
+              System.import('containers/FormContainer/reducer'),
+              System.import('containers/FormContainer/sagas'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([
+              component,
+              reducer,
+              sagas,
+            ]) => {
+              injectReducer('formContainer', reducer.default);
+              injectSagas('form', sagas.default);
               renderRoute(component);
             });
 

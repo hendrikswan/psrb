@@ -5,8 +5,10 @@
 */
 import React from 'react';
 import Link from './../Link';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
-const LinkList = ({ links, onVoteDown, onVoteUp, topicName }) => {
+const LinkList = ({ links, onVoteDown, onVoteUp, topicName, onAdd }) => {
   const linkNodes = links.map(link => (
     <Link
       key={link.id}
@@ -25,6 +27,14 @@ const LinkList = ({ links, onVoteDown, onVoteUp, topicName }) => {
       >
         {topicName}
       </h1>
+
+      <FloatingActionButton
+        style={{ position: 'fixed', right: 30, top: 110 }}
+        onMouseUp={onAdd}
+        secondary
+      >
+        <ContentAdd />
+      </FloatingActionButton>
       {linkNodes}
     </div>
   );
@@ -40,6 +50,7 @@ LinkList.propTypes = {
   onVoteUp: React.PropTypes.func.isRequired,
   onVoteDown: React.PropTypes.func.isRequired,
   topicName: React.PropTypes.string,
+  onAdd: React.PropTypes.func.isRequired,
 };
 
 export default LinkList;

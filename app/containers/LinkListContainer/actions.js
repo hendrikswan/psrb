@@ -9,6 +9,7 @@ import {
   REQUEST_LINKS_SUCCEEDED,
   REQUEST_LINKS_FAILED,
   VOTE_LINK,
+  START_ADD_LINK,
   VOTE_LINK_SUCCEEDED,
   VOTE_LINK_FAILED,
 } from './constants';
@@ -17,6 +18,12 @@ export function requestLinks(topicName) {
   return {
     type: REQUEST_LINKS,
     topicName,
+  };
+}
+
+export function startAddLink() {
+  return {
+    type: START_ADD_LINK,
   };
 }
 
