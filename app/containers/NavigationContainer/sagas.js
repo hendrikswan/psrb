@@ -2,14 +2,9 @@ import { put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
 import { REQUEST_TOPICS, REQUEST_TOPICS_SUCCEEDED } from './constants';
-import fetch from 'isomorphic-fetch';
 import selectNavigationContainer from './selectors';
 import { push } from 'react-router-redux';
-
-export function fetchTopicsFromServer() {
-  return fetch('http://localhost:3000/api/topics')
-    .then(response => response.json());
-}
+import { fetchTopicsFromServer } from '../api';
 
 function* fetchTopics() {
   try {
