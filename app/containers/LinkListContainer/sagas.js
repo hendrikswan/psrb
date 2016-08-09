@@ -25,16 +25,20 @@ function* fetchLinks(action) {
 }
 
 
-export function sendVoteLinkToServer(link, increment) {
+export function sendVoteLinkToServer({
+  link,
+  increment,
+  email,
+}) {
   return fetch(`http://localhost:3000/api/links/${link.id}/vote`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-    //  Authorization: `Bearer ${getState().main.idToken}`,
     },
     body: JSON.stringify({
       increment,
+      email,
     }),
   }).then(response => response.json());
 }
@@ -47,7 +51,11 @@ function* voteLink(action) {
   }
 
   try {
-    const updatedLink = yield sendVoteLinkToServer(action.link, action.increment);
+    const updatedLink = yield sendVoteLinkToServer({
+      link: action.link,
+      increment: action.increment,
+      email: state.email,
+    });
     yield put(requestVoteLinkSucceeded({
       link: updatedLink,
     }));
