@@ -40,10 +40,6 @@ export function sendVoteLinkToServer(link, increment) {
 }
 
 function* voteLink(action) {
-  // if (!getState().main.profile) {
-  //   dispatch(showLock());
-  //   return;
-  // }
   const state = yield select(selectLinkListContainer());
   if (!state.email) {
     yield put(push('/login'));
