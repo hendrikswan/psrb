@@ -22,8 +22,7 @@ const selectNavigationContainer = () => createSelector(
   // topics: state.get('navigationContainer').topics;
   (substate, loginSubstate) => {
     const substateJs = substate.toJS();
-    const loginSubstateJs = loginSubstate;
-    return Object.assign(substateJs, loginSubstateJs);
+    return Object.assign(substateJs, loginSubstate);
   }
 );
 

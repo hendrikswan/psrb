@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-
+import selectLoginContainer from '../LoginContainer/selectors';
 
 // need to get the selected topic here
 const selectLinkListContainerDomain = () => state => state.get('linkListContainer');
@@ -13,7 +13,11 @@ const selectLinkListContainerDomain = () => state => state.get('linkListContaine
 
 const selectLinkListContainer = () => createSelector(
   selectLinkListContainerDomain(),
-  (substate) => substate.toJS()
+  selectLoginContainer(),
+  (substate, loginSubstate) => {
+    const substateJs = substate.toJS();
+    return Object.assign(substateJs, loginSubstate);
+  }
 );
 
 export default selectLinkListContainer;

@@ -1,8 +1,10 @@
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { REQUEST_LINKS, VOTE_LINK } from './constants';
 import { requestLinksSucceeded, requestLinksFailed, requestVoteLinkSucceeded, requestVoteLinkFailed } from './actions';
 import { selectTopic } from '../NavigationContainer/actions';
+import selectLinkListContainer from './selectors';
+import { push } from 'react-router-redux';
 
 export function fetchLinksFromServer(topicName) {
   return fetch(`http://localhost:3000/api/topics/${topicName}/links`)
@@ -22,7 +24,7 @@ function* fetchLinks(action) {
   }
 }
 
-// todo auth
+
 export function sendVoteLinkToServer(link, increment) {
   return fetch(`http://localhost:3000/api/links/${link.id}/vote`, {
     method: 'POST',
@@ -37,12 +39,17 @@ export function sendVoteLinkToServer(link, increment) {
   }).then(response => response.json());
 }
 
-// todo auth
 function* voteLink(action) {
   // if (!getState().main.profile) {
   //   dispatch(showLock());
   //   return;
   // }
+  const state = yield select(selectLinkListContainer());
+  if (!state.email) {
+    yield put(push('/login'));
+    return;
+  }
+
   try {
     const updatedLink = yield sendVoteLinkToServer(action.link, action.increment);
     yield put(requestVoteLinkSucceeded({
