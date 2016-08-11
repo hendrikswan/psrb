@@ -80,12 +80,14 @@ class Form extends React.Component {
           hintText={this.props.intl.formatMessage(messages.urlTextField)}
           ref={(i) => (this.url = i)}
           style={inputStyle}
+          floatingLabelText={this.props.intl.formatMessage(messages.urlTextField)}
           errorText={this.state.urlError}
         />
         <TextField
           hintText={this.props.intl.formatMessage(messages.descriptionTextField)}
           ref={(i) => (this.description = i)}
           style={inputStyle}
+          floatingLabelText={this.props.intl.formatMessage(messages.descriptionTextField)}
           errorText={this.state.descriptionError}
         />
       </Dialog>
