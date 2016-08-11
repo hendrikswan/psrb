@@ -6,8 +6,9 @@
 
 import React from 'react';
 import Card from 'material-ui/Card/Card';
+import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -58,56 +59,42 @@ class Form extends React.Component {
       url,
       description,
     });
-        // this.context.router.goBack();
   }
 
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        secondary
+        onTouchTap={this.props.cancelAdd}
+      />,
+      <FlatButton
+        label="Add"
+        primary
+        onTouchTap={this.onAdd}
+      />,
+    ];
     return (
-      <Card
-        style={{
-          marginTop: 15,
-          padding: 20,
-        }}
+      <Dialog
+        title="Add a link"
+        actions={actions}
+        modal
+        open
+        contentStyle={{ width: 520 }}
       >
-        <div
-          style={{
-            display: 'block',
-            margin: '0 auto',
-            width: 320,
-          }}
-        >
-          <div>
-            <TextField
-              hintText="URL"
-              ref={(i) => (this.url = i)}
-              style={inputStyle}
-              errorText={this.state.urlError}
-            /><br />
-
-            <TextField
-              hintText="Description"
-              ref={(i) => (this.description = i)}
-              style={inputStyle}
-              errorText={this.state.descriptionError}
-            /><br />
-
-            <RaisedButton
-              label="Add"
-              primary
-              style={inputStyle}
-              onMouseUp={this.onAdd}
-            />
-
-            <RaisedButton
-              label="Cancel"
-              secondary
-              style={inputStyle}
-              onMouseUp={this.props.cancelAdd}
-            />
-          </div>
-        </div>
-
-      </Card>
+        <TextField
+          hintText="URL"
+          ref={(i) => (this.url = i)}
+          style={inputStyle}
+          errorText={this.state.urlError}
+        />
+        <TextField
+          hintText="Description"
+          ref={(i) => (this.description = i)}
+          style={inputStyle}
+          errorText={this.state.descriptionError}
+        />
+      </Dialog>
   );
   }
 }
