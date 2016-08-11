@@ -21,8 +21,8 @@
   },
   {
     "id": "app.components.Form.header",
-    "defaultMessage": "Add a link",
-    "message": ""
+    "defaultMessage": "Add a link in fr",
+    "message": "Add a link in fr"
   },
   {
     "id": "app.components.Form.urlError",
