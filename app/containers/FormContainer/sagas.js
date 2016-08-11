@@ -1,25 +1,10 @@
-import { put, select } from 'redux-saga/effects';
+import { put, select, call } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { REQUEST_ADD, CANCEL_ADD, ADD_LINK_SUCCEEDED } from './constants';
 import { requestAddLinkSucceeded, requestAddLinkFailed } from './actions';
 import selectFormContainer from './selectors';
 import { push, goBack } from 'react-router-redux';
-
-
-export function sendAddLinkToServer({ topicName, url, description }) {
-  return fetch(`http://localhost:3000/api/topics/${topicName}/links`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      url,
-      description,
-      topicName,
-    }),
-  }).then(response => response.json());
-}
+import { sendAddLinkToServer } from '../api';
 
 function* addLink(action) {
   const state = yield select(selectFormContainer());
@@ -29,7 +14,7 @@ function* addLink(action) {
   }
 
   try {
-    yield sendAddLinkToServer({
+    yield call(sendAddLinkToServer, {
       topicName: state.topicName,
       url: action.url,
       description: action.description,
