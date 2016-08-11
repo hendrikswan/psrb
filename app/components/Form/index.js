@@ -5,22 +5,16 @@
 */
 
 import React from 'react';
-import Card from 'material-ui/Card/Card';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-
+import messages from './messages';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 const inputStyle = {
   width: '100%',
   marginTop: 10,
 };
-
-//       <FormattedMessage {...messages.header} />
-
 
 class Form extends React.Component {
   constructor(props, context) {
@@ -39,11 +33,11 @@ class Form extends React.Component {
     let descriptionError = '';
 
     if (!url.match(/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/)) {
-      urlError = 'please specify a valid url';
+      urlError = this.props.intl.formatMessage(messages.urlError);
     }
 
     if (!description) {
-      descriptionError = 'please specify a description for your link';
+      descriptionError = this.props.intl.formatMessage(messages.descriptionError);
     }
 
     if (urlError || descriptionError) {
@@ -64,32 +58,32 @@ class Form extends React.Component {
   render() {
     const actions = [
       <FlatButton
-        label="Cancel"
+        label={this.props.intl.formatMessage(messages.cancelButton)}
         secondary
         onTouchTap={this.props.cancelAdd}
       />,
       <FlatButton
-        label="Add"
+        label={this.props.intl.formatMessage(messages.addButton)}
         primary
         onTouchTap={this.onAdd}
       />,
     ];
     return (
       <Dialog
-        title="Add a link"
+        title={this.props.intl.formatMessage(messages.header)}
         actions={actions}
         modal
         open
         contentStyle={{ width: 520 }}
       >
         <TextField
-          hintText="URL"
+          hintText={this.props.intl.formatMessage(messages.urlTextField)}
           ref={(i) => (this.url = i)}
           style={inputStyle}
           errorText={this.state.urlError}
         />
         <TextField
-          hintText="Description"
+          hintText={this.props.intl.formatMessage(messages.descriptionTextField)}
           ref={(i) => (this.description = i)}
           style={inputStyle}
           errorText={this.state.descriptionError}
@@ -102,7 +96,8 @@ class Form extends React.Component {
 Form.propTypes = {
   cancelAdd: React.PropTypes.func.isRequired,
   add: React.PropTypes.func.isRequired,
+  intl: intlShape.isRequired,
 };
 
 
-export default Form;
+export default injectIntl(Form);
