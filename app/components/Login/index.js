@@ -45,7 +45,7 @@ class Login extends React.Component {
     const actions = [
       <FlatButton
         label="Cancel"
-        primary
+        secondary
         onTouchTap={this.props.cancelLogin}
       />,
       <FlatButton
