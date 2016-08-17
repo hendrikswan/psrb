@@ -9,7 +9,7 @@ import selectLinkListContainer from './selectors';
 
 import LinkList from '../../components/LinkList';
 import React from 'react';
-import { requestLinks, voteLink } from './actions';
+import { requestLinks, voteLink, startAddLink } from './actions';
 
 const mapStateToProps = selectLinkListContainer();
 
@@ -51,6 +51,7 @@ function mapDispatchToProps(dispatch) {
     requestLinks: (topicName) => dispatch(requestLinks(topicName)),
     onVoteUp: (link) => dispatch(voteLink({ link, increment: 1 })),
     onVoteDown: (link) => dispatch(voteLink({ link, increment: -1 })),
+    onAdd: () => dispatch(startAddLink()),
   };
 }
 

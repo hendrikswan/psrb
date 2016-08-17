@@ -1,6 +1,6 @@
 import { put, select, call } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
-import { REQUEST_LINKS, VOTE_LINK } from './constants';
+import { REQUEST_LINKS, VOTE_LINK, START_ADD_LINK } from './constants';
 import { requestLinksSucceeded, requestLinksFailed, requestVoteLinkSucceeded, requestVoteLinkFailed } from './actions';
 import { selectTopic } from '../NavigationContainer/actions';
 import selectLinkListContainer from './selectors';
@@ -43,6 +43,17 @@ function* voteLink(action) {
   }
 }
 
+
+function* startAdd() {
+  const state = yield select(selectLinkListContainer());
+  if (!state.email) {
+    yield put(push('/login'));
+    return;
+  }
+
+  yield put(push(`/topics/${state.topicName}/add`));
+}
+
 // Individual exports for testing
 export function* fetchLinksSaga() {
   yield* takeLatest(REQUEST_LINKS, fetchLinks);
@@ -51,8 +62,14 @@ export function* fetchLinksSaga() {
 export function* voteLinkSaga() {
   yield* takeLatest(VOTE_LINK, voteLink);
 }
+
+export function* startAddSaga() {
+  yield* takeLatest(START_ADD_LINK, startAdd);
+}
+
 // All sagas to be loaded
 export default [
   fetchLinksSaga,
   voteLinkSaga,
+  startAddSaga,
 ];

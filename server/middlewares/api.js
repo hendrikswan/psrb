@@ -78,14 +78,14 @@ module.exports = (app) => {
   });
 
   app.get('/api/topics/:name/links', (req, res) => {
-    res.send(db.get('links').filter((l) =>
+    const links = db.get('links').filter((l) =>
       l.topicName === req.params.name
-    ).value());
+    ).value();
+    res.send(links);
   });
 
   app.post('/api/topics/:name/links', (req, res) => {
-    const existingLink = db.get('links').find({ url: req.body.url });
-
+    const existingLink = db.get('links').find({ url: req.body.url }).value();
     if (existingLink) {
       return res.send(403);
     }
@@ -95,9 +95,7 @@ module.exports = (app) => {
       voteCount: 0,
       voters: [],
     });
-    db.get('links')
-      .push(link);
-
+    db.get('links').push(link).value();
     return res.send(link);
   });
 
