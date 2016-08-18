@@ -5,29 +5,14 @@
 */
 
 import React from 'react';
-import gravatarUrl from 'gravatar-url';
-import Avatar from 'material-ui/Avatar';
-import FlatButton from 'material-ui/FlatButton';
+import styles from './styles.css';
 
 function LoginLink({ startLogin, email }) {
   if (email) {
     return (
       <div
-        style={{
-          color: '#fff',
-          marginRight: 15,
-          marginTop: 7,
-          display: 'flex',
-          alignItems: 'center',
-        }}
+        className={styles.profile}
       >
-        <Avatar
-          src={gravatarUrl(email, { size: 60 })}
-          size={30}
-          style={{
-            marginRight: 5,
-          }}
-        />
         {email}
       </div>
     );
@@ -35,17 +20,10 @@ function LoginLink({ startLogin, email }) {
 
   return (
     <div
-      style={{
-        marginTop: 5,
-      }}
+      className={styles.loginLink}
+      onClick={startLogin}
     >
-      <FlatButton
-        label="Log in"
-        onMouseUp={startLogin}
-        style={{
-          color: '#fff',
-        }}
-      />
+      log in
     </div>
   );
 }
