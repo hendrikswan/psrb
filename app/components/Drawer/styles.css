@@ -5,7 +5,7 @@
   height: 100%;
   width: 300px;
   background: #fff;
-  padding: 20px;
+  padding: 0px;
   transition: .25s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
   z-index: 1000;
@@ -21,6 +21,7 @@
   padding: 10px;
   text-transform: uppercase;
   cursor: pointer;
+  border-bottom: solid 1px #f6f6f6;
 }
 
 
