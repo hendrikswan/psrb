@@ -1,35 +1,14 @@
-/**
-*
-* Navigation
-*
-*/
-
 import React from 'react';
 import AppBar from '../AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import List from 'material-ui/List/List';
-import LoginLink from '../LoginLink';
-import styles from './styles.css';
+import Drawer from '../Drawer';
 
 
 class Navigation extends React.Component {
   componentWillMount() {
-    this.props.requestTopics();
+    this.props.requestTopics(); // should be done in a container component
   }
 
   render() {
-    const topicNodes = this.props.topics.map(topic => (
-      <MenuItem
-        key={topic.name}
-        onTouchTap={() => {
-          this.props.selectTopic(topic);
-        }}
-      >
-          {topic.name}
-      </MenuItem>
-    ));
-
     return (
       <div>
         <AppBar
@@ -39,14 +18,10 @@ class Navigation extends React.Component {
         />
 
         <Drawer
-          open={this.props.isDrawerOpen}
-          docked={false}
-          onRequestChange={this.props.toggleDrawer}
-        >
-          <List>
-            {topicNodes}
-          </List>
-        </Drawer>
+          topics={this.props.topics}
+          selectTopic={this.props.selectTopic}
+          isDrawerOpen={this.props.isDrawerOpen}
+        />
       </div>
     );
   }
