@@ -5,13 +5,13 @@
 */
 
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import AppBar from '../AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import List from 'material-ui/List/List';
 import LoginLink from '../LoginLink';
 import styles from './styles.css';
-import FontAwesome from 'react-fontawesome';
+
 
 class Navigation extends React.Component {
   componentWillMount() {
@@ -32,26 +32,11 @@ class Navigation extends React.Component {
 
     return (
       <div>
-
-        <div className={styles.bar}>
-          <div
-            className={styles.menuLink}
-            onClick={this.props.toggleDrawer}
-          >
-            <FontAwesome
-              className={styles.icon}
-              name="bars"
-            />
-          </div>
-          <div>
-            Coder daily
-          </div>
-          <div
-            className={styles.loginLinkContainer}
-          >
-            <LoginLink email={this.props.email} startLogin={this.props.startLogin} />
-          </div>
-        </div>
+        <AppBar
+          email={this.props.email}
+          startLogin={this.props.startLogin}
+          toggleDrawer={this.props.toggleDrawer}
+        />
 
         <Drawer
           open={this.props.isDrawerOpen}
