@@ -37,6 +37,15 @@ function setupDb() {
     voters: [],
   }).value();
   db.get('links').push({
+    description: 'Some old videos',
+    url: 'http://tagtree.io',
+    topicName: topic1.name,
+    id: uuid(),
+    voteCount: 0,
+    voters: [],
+  }).value();
+
+  db.get('links').push({
     description: 'An app to manage your finances',
     url: 'https://22seven.com',
     topicName: topic2.name,

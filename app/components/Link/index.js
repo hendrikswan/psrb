@@ -6,66 +6,45 @@
 
 import React from 'react';
 import styles from './styles.css';
-import ListItem from 'material-ui/List/ListItem';
-import Card from 'material-ui/Card/Card';
 import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import VotingButton from '../VotingButton';
 
+
 const Link = ({ link, onVoteUp, onVoteDown }) => (
-  <Card
-    key={link.id}
-    style={{
-      marginBottom: 10,
-    }}
+  <div
+    className={styles.linkCard}
   >
-    <div
-      style={{
-        display: 'flex',
-        marginTop: 15,
-      }}
-    >
+    <div>
+      <VotingButton
+        icon={<UpArrow />}
+        onVote={() => onVoteUp(link)}
+        link={link}
+      />
       <div
-        className={styles.link}
-        key={link.id}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+        className={styles.votingCount}
       >
-        <VotingButton
-          icon={<UpArrow />}
-          onVote={() => onVoteUp(link)}
-          link={link}
-        />
-        <div
-          style={{
-            fontSize: 20,
-            textAlign: 'center',
-          }}
-        >
-          {link.voteCount}
-        </div>
-        <VotingButton
-          icon={<DownArrow />}
-          onVote={() => onVoteDown(link)}
-          link={link}
-        />
+        {link.voteCount}
+      </div>
+      <VotingButton
+        icon={<DownArrow />}
+        onVote={() => onVoteDown(link)}
+        link={link}
+      />
+    </div>
+    <div
+      className={styles.detailsContainer}
+    >
+      <div>
+        {link.url}
       </div>
       <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
+        className={styles.description}
       >
-        <ListItem
-          primaryText={link.url}
-          secondaryText={link.description}
-        />
+        {link.description}
       </div>
     </div>
-  </Card>
+  </div>
 );
 
 
