@@ -6,30 +6,27 @@
 
 import React from 'react';
 import styles from './styles.css';
-import UpArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
-import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-import VotingButton from '../VotingButton';
-
+import IconButton from '../IconButton';
 
 const Link = ({ link, onVoteUp, onVoteDown }) => (
   <div
     className={styles.linkCard}
   >
-    <div>
-      <VotingButton
-        icon={<UpArrow />}
-        onVote={() => onVoteUp(link)}
-        link={link}
+    <div className={styles.votingContainer}>
+      <IconButton
+        icon="angle-up"
+        onClick={() => onVoteUp(link)}
+        disabled={!link.votingEnabled}
       />
       <div
         className={styles.votingCount}
       >
         {link.voteCount}
       </div>
-      <VotingButton
-        icon={<DownArrow />}
-        onVote={() => onVoteDown(link)}
-        link={link}
+      <IconButton
+        icon="angle-down"
+        onClick={() => onVoteDown(link)}
+        disabled={!link.votingEnabled}
       />
     </div>
     <div

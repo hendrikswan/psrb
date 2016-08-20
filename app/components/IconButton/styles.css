@@ -1,0 +1,21 @@
+.iconButton {
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon {
+  color: #333;
+}
+
+.icon:hover {
+  color: #ff4081;
+}
+
+.disabled {
+  color: #d0d0d0;
+  cursor: default;
+}
+
+.disabled:hover {
+  color: #d0d0d0;
+}
