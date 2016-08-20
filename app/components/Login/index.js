@@ -8,7 +8,7 @@ import React from 'react';
 import validator from 'email-validator';
 import styles from './styles.css';
 import classNames from 'classnames';
-
+import TextInput from '../TextInput';
 
 class Login extends React.Component {
   state = {
@@ -17,7 +17,7 @@ class Login extends React.Component {
 
 
   login = () => {
-    const email = this.emailField.value;
+    const email = this.emailField.value();
     if (!validator.validate(email)) {
       this.setState({
         errorText: 'Please provide a valid email',
@@ -29,14 +29,6 @@ class Login extends React.Component {
   }
 
   render() {
-    const fieldError = this.state.errorText ? (
-      <div
-        className={styles.errorMessage}
-      >
-        {this.state.errorText}
-      </div>
-    ) : null;
-
     return (
       <div
         className={styles.card}
@@ -47,14 +39,11 @@ class Login extends React.Component {
           Login with your email
         </div>
 
-
-        <input
-          className={classNames(styles.input, { [styles.inputError]: this.state.errorText })}
-          placeholder="Your email"
-          ref={(f) => { this.emailField = f; }}
-          type="text"
+        <TextInput
+          errorText={this.state.errorText}
+          placeholder="Your e-mail address"
+          ref={(f) => (this.emailField = f)}
         />
-        {fieldError}
 
         <div
           className={styles.actionContainer}

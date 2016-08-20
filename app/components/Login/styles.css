@@ -17,25 +17,6 @@
   margin-bottom: 20px;
 }
 
-
-.input {
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  border-bottom-width: 1px;
-  padding:5px;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  width: 100%;
-  font-size: 18px;
-}
-
-
-.input:focus {
-    outline: none;
-    border-bottom-color: #00afcc;
-    border-bottom-width: 2px;
-}
-
 .actionContainer {
   display: flex;
   justify-content: flex-end;
@@ -57,15 +38,4 @@
 
 .action {
     margin-left: 15px;
-}
-
-.errorMessage {
-  color: #ce1313;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 14px;
-}
-
-.inputError {
-  border-bottom-color: #ce1313;
 }
