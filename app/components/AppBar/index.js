@@ -1,17 +1,17 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import styles from './styles.css';
 import LoginLink from '../LoginLink';
+import IconButton from '../IconButton';
 
 const AppBar = ({ email, startLogin, toggleDrawer }) => (
   <div className={styles.bar}>
     <div
       className={styles.menuLink}
-      onClick={toggleDrawer}
     >
-      <FontAwesome
-        className={styles.icon}
-        name="bars"
+      <IconButton
+        icon="bars"
+        onClick={toggleDrawer}
+        iconClass={styles.icon}
       />
     </div>
     <div>

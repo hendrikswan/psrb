@@ -12,7 +12,6 @@ import classNames from 'classnames';
 
 function IconButton({
   icon,
-  size = 40,
   onClick,
   disabled = false,
   iconClass,
@@ -26,9 +25,6 @@ function IconButton({
       <FontAwesome
         className={classNames(styles.icon, iconClass, { [styles.disabled]: disabled })}
         name={icon}
-        style={{
-          fontSize: size,
-        }}
       />
     </div>
   );

@@ -17,6 +17,7 @@ const Link = ({ link, onVoteUp, onVoteDown }) => (
         icon="angle-up"
         onClick={() => onVoteUp(link)}
         disabled={!link.votingEnabled}
+        iconClass={styles.votingIcon}
       />
       <div
         className={styles.votingCount}
@@ -27,6 +28,7 @@ const Link = ({ link, onVoteUp, onVoteDown }) => (
         icon="angle-down"
         onClick={() => onVoteDown(link)}
         disabled={!link.votingEnabled}
+        iconClass={styles.votingIcon}
       />
     </div>
     <div
