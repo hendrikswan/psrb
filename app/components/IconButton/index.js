@@ -32,8 +32,8 @@ function IconButton({
 
 IconButton.propTypes = {
   icon: React.PropTypes.string.isRequired,
-  iconClass: React.PropTypes.string.isRequired,
-  buttonClass: React.PropTypes.string.isRequired,
+  iconClass: React.PropTypes.string,
+  buttonClass: React.PropTypes.string,
   onClick: React.PropTypes.func.isRequired,
   size: React.PropTypes.number,
   disabled: React.PropTypes.bool,

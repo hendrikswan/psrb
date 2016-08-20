@@ -17,7 +17,10 @@ const AppBar = ({ email, startLogin, toggleDrawer }) => (
     <div
       className={styles.loginLinkContainer}
     >
-      <LoginLink email={email} startLogin={startLogin} />
+      <LoginLink
+        email={email}
+        startLogin={startLogin}
+      />
     </div>
   </div>
 );

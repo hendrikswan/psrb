@@ -6,6 +6,7 @@
 
 import React from 'react';
 import styles from './styles.css';
+import Button from '../Button';
 
 function LoginLink({ startLogin, email }) {
   if (email) {
@@ -19,12 +20,11 @@ function LoginLink({ startLogin, email }) {
   }
 
   return (
-    <div
-      className={styles.loginLink}
+    <Button
+      text="log in"
       onClick={startLogin}
-    >
-      log in
-    </div>
+      className={styles.loginLink}
+    />
   );
 }
 

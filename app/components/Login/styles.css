@@ -23,19 +23,6 @@
   margin-top: 25px;
 }
 
-.button {
-  text-transform: uppercase;
-  padding:10px;
-  border-radius: 2;
-  cursor: pointer;
-  color: #00afcc;
-
-  &:hover {
-    background-color: rgba(0,0,0, 0.05);
-    font-weight: 700;
-  }
-}
-
 .action {
     margin-left: 15px;
 }

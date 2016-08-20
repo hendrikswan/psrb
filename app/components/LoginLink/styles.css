@@ -1,11 +1,17 @@
 .loginLink {
-  display: block;
-  width: 100%;
-  text-align: right;
+  width: 100px;
+  text-align: center;
   text-transform: uppercase;
   font-size: 16px;
-  padding-top: 5px;
   cursor: pointer;
+  color: #fff !important; /*this sucks! bug? doesn't always use this one even when applied last */
+  position: absolute;
+  right: 20px;
+  top: 22px;
+}
+
+.loginLinkContainer {
+
 }
 
 

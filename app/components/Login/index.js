@@ -9,6 +9,7 @@ import validator from 'email-validator';
 import styles from './styles.css';
 import classNames from 'classnames';
 import TextInput from '../TextInput';
+import Button from '../Button';
 
 class Login extends React.Component {
   state = {
@@ -48,18 +49,16 @@ class Login extends React.Component {
         <div
           className={styles.actionContainer}
         >
-          <div
-            className={classNames(styles.button, styles.action)}
+          <Button
+            className={styles.action}
+            text="cancel"
             onClick={this.props.cancelLogin}
-          >
-            cancel
-          </div>
-          <div
-            className={classNames(styles.button, styles.action)}
+          />
+          <Button
+            className={styles.action}
             onClick={this.login}
-          >
-            log in
-          </div>
+            text="log in"
+          />
         </div>
       </div>
     );
