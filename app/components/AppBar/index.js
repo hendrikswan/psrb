@@ -5,15 +5,12 @@ import IconButton from '../IconButton';
 
 const AppBar = ({ email, startLogin, toggleDrawer }) => (
   <div className={styles.bar}>
-    <div
-      className={styles.menuLink}
-    >
-      <IconButton
-        icon="bars"
-        onClick={toggleDrawer}
-        iconClass={styles.icon}
-      />
-    </div>
+    <IconButton
+      icon="bars"
+      onClick={toggleDrawer}
+      iconClass={styles.icon}
+      buttonClass={styles.menuLink}
+    />
     <div>
       Coder daily
     </div>
