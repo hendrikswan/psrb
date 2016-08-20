@@ -25,7 +25,7 @@ class Login extends React.Component {
       return;
     }
 
-    this.props.login(this.emailField.value);
+    this.props.login(email);
   }
 
   render() {
