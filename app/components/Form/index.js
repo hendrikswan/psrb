@@ -5,11 +5,12 @@
 */
 
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import messages from './messages';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
+import TextInput from '../TextInput';
+import Button from '../Button';
+import Modal from '../Modal';
+import styles from './styles.css';
 
 const inputStyle = {
   width: '100%',
@@ -27,8 +28,8 @@ class Form extends React.Component {
   }
 
   onAdd = () => {
-    const url = this.url.getValue();
-    const description = this.description.getValue();
+    const url = this.url.value();
+    const description = this.description.value();
     let urlError = '';
     let descriptionError = '';
 
@@ -57,41 +58,36 @@ class Form extends React.Component {
 
   render() {
     const actions = [
-      <FlatButton
-        label={this.props.intl.formatMessage(messages.cancelButton)}
-        secondary
-        onTouchTap={this.props.cancelAdd}
+      <Button
+        text="Cancel"
+        onClick={this.props.cancelAdd}
       />,
-      <FlatButton
-        label={this.props.intl.formatMessage(messages.addButton)}
-        primary
-        onTouchTap={this.onAdd}
+      <Button
+        onClick={this.onAdd}
+        text="Add"
       />,
     ];
     return (
-      <Dialog
-        title={this.props.intl.formatMessage(messages.header)}
+      <Modal
+        headingText={this.props.intl.formatMessage(messages.header)}
         actions={actions}
-        modal
-        open
-        contentStyle={{ width: 520 }}
       >
-        <TextField
-          hintText={this.props.intl.formatMessage(messages.urlTextField)}
-          ref={(i) => (this.url = i)}
-          style={inputStyle}
-          floatingLabelText={this.props.intl.formatMessage(messages.urlTextField)}
+        <TextInput
           errorText={this.state.urlError}
+          placeholder={this.props.intl.formatMessage(messages.urlTextField)}
+          ref={(f) => (this.url = f)}
+          className={styles.input}
         />
-        <TextField
-          hintText={this.props.intl.formatMessage(messages.descriptionTextField)}
-          ref={(i) => (this.description = i)}
+
+        <TextInput
+          placeholder={this.props.intl.formatMessage(messages.descriptionTextField)}
+          ref={(f) => (this.description = f)}
           style={inputStyle}
-          floatingLabelText={this.props.intl.formatMessage(messages.descriptionTextField)}
           errorText={this.state.descriptionError}
+          className={styles.input}
         />
-      </Dialog>
-  );
+      </Modal>
+    );
   }
 }
 

@@ -29,7 +29,7 @@ class TextInput extends React.Component {
     return (
       <div>
         <input
-          className={classNames(styles.input, { [styles.inputError]: errorText })}
+          className={classNames(styles.input, this.props.className, { [styles.inputError]: errorText })}
           placeholder={this.props.placeholder}
           ref={(f) => { this.field = f; }}
           type="text"
@@ -44,6 +44,7 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
   errorText: React.PropTypes.string,
   placeholder: React.PropTypes.string,
+  className: React.PropTypes.string,
 };
 
 export default TextInput;
