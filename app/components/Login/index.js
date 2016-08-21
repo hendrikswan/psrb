@@ -6,7 +6,6 @@
 
 import React from 'react';
 import validator from 'email-validator';
-import styles from './styles.css';
 import TextInput from '../TextInput';
 import Button from '../Button';
 import Modal from '../Modal';
@@ -51,37 +50,6 @@ class Login extends React.Component {
           ref={(f) => (this.emailField = f)}
         />
       </Modal>
-      // <div
-      //   className={styles.card}
-      // >
-      //   <div
-      //     className={styles.cardHeading}
-      //   >
-      //     Login with your email
-      //   </div>
-      //
-      //   <TextInput
-      //     errorText={this.state.errorText}
-      //     placeholder="Your e-mail address"
-      //     ref={(f) => (this.emailField = f)}
-      //   />
-      //
-      //   <div
-      //     className={styles.actionContainer}
-      //   >
-      //     <Button
-      //       className={styles.action}
-      //       text="cancel"
-      //       onClick={this.props.cancelLogin}
-      //     />
-      //     <Button
-      //       className={styles.action}
-      //       onClick={this.login}
-      //       text="log in"
-      //     />
-      //   </div>
-      // </div>
-
     );
   }
 }
