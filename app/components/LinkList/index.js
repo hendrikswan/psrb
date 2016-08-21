@@ -5,8 +5,8 @@
 */
 import React from 'react';
 import Link from './../Link';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import IconButton from '../IconButton';
+import styles from './styles.css';
 
 const LinkList = ({ links, onVoteDown, onVoteUp, topicName, onAdd }) => {
   const linkNodes = links.map(link => (
@@ -28,13 +28,13 @@ const LinkList = ({ links, onVoteDown, onVoteUp, topicName, onAdd }) => {
         {topicName}
       </h1>
 
-      <FloatingActionButton
-        style={{ position: 'fixed', right: 30, top: 110 }}
-        onMouseUp={onAdd}
-        secondary
-      >
-        <ContentAdd />
-      </FloatingActionButton>
+      <IconButton
+        icon="plus"
+        onClick={onAdd}
+        buttonClass={styles.button}
+        iconClass={styles.icon}
+      />
+
       {linkNodes}
     </div>
   );
