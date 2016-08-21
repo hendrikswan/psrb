@@ -37,4 +37,13 @@ function Modal({ headingText, children, actions }) {
   );
 }
 
+Modal.propTypes = {
+  headingText: React.PropTypes.string.isRequired,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.node),
+    React.PropTypes.node,
+  ]),
+  actions: React.PropTypes.arrayOf(React.PropTypes.node),
+};
+
 export default Modal;
