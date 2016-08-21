@@ -33,3 +33,11 @@
 .votingIcon {
   font-size: 40px;
 }
+
+.linkAnchor {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -35,7 +35,12 @@ const Link = ({ link, onVoteUp, onVoteDown }) => (
       className={styles.detailsContainer}
     >
       <div>
-        {link.url}
+        <a
+          href={link.url}
+          className={styles.linkAnchor}
+        >
+          {link.url}
+        </a>
       </div>
       <div
         className={styles.description}
