@@ -21,12 +21,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -60,21 +55,19 @@ const rootRoute = {
 
 const render = (translatedMessages) => {
   ReactDOM.render(
-    <MuiThemeProvider>
-      <Provider store={store}>
-        <LanguageProvider messages={translatedMessages}>
-          <Router
-            history={history}
-            routes={rootRoute}
-            render={
-              // Scroll to top when going to a new page, imitating default browser
-              // behaviour
-              applyRouterMiddleware(useScroll())
-            }
-          />
-        </LanguageProvider>
-      </Provider>
-    </MuiThemeProvider>,
+    <Provider store={store}>
+      <LanguageProvider messages={translatedMessages}>
+        <Router
+          history={history}
+          routes={rootRoute}
+          render={
+            // Scroll to top when going to a new page, imitating default browser
+            // behaviour
+            applyRouterMiddleware(useScroll())
+          }
+        />
+      </LanguageProvider>
+    </Provider>,
     document.getElementById('app')
   );
 };
